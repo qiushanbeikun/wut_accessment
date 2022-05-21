@@ -1,20 +1,15 @@
-import {Avatar, Grid, Typography} from "@mui/material";
+import {Grid, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
 import ShareIcon from '@mui/icons-material/Share';
 import styled from "@emotion/styled";
-
-const NameWrapper = styled.div`
-  white-space: nowrap;
-`;
-
 
 const ContactBarContainer = styled.div`
   border-bottom: 2px solid #c3c3c3;
 `;
 
 const StyledProfile = styled.img`
-  margin: auto;
-  border-radius: 50%;
+  width: 80%;
+  margin: 0.4em;
 `;
 
 
@@ -24,7 +19,7 @@ export default function ContactBar({contact}) {
       <Grid container>
         <Grid item xs={3}>
           <Link to={`/contact/${contact.id}`}>
-            <StyledProfile src={`data:image/png;base64,${contact.profile}`} alt="profile"/>
+            <StyledProfile src={`${contact.photo}`} alt="profile"/>
           </Link>
         </Grid>
         <Grid item xs={9}>
@@ -40,7 +35,11 @@ export default function ContactBar({contact}) {
               </button>
             </div>
 
-            <Typography>{contact.email}</Typography>
+            <Typography>
+              <a href={`mailto:${contact.email}`}>
+                {contact.email}
+              </a>
+            </Typography>
             <Typography>{contact.phone}</Typography>
           </div>
 
